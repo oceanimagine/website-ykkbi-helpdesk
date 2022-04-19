@@ -1,12 +1,5 @@
 <?php
 
-if(!isset($_SERVER)){
-    echo "<title>Something Wrong</title>\n";
-    echo "<style type='text/css'>html, body { font-family: consolas, monospace; }</style>";
-    echo "Maybe There is Something Wrong With Your PHP Instalation.\n";
-    exit();
-}
-
 include_once __DIR__ . "/config/connect-list.php";
 include_once __DIR__ . "/config/connect.php";
 
