@@ -56,6 +56,73 @@ $array_jam_label = array(
 $array_id_not_include_label = array(
     "id"
 );
+function is_alphabet($param){
+    $huruf = array(
+        "a" => true,
+        "b" => true,
+        "c" => true,
+        "d" => true,
+        "e" => true,
+        "f" => true,
+        "g" => true,
+        "h" => true,
+        "i" => true,
+        "j" => true,
+        "k" => true,
+        "l" => true,
+        "m" => true,
+        "n" => true,
+        "o" => true,
+        "p" => true,
+        "q" => true,
+        "r" => true,
+        "s" => true,
+        "t" => true,
+        "u" => true,
+        "v" => true,
+        "w" => true,
+        "x" => true,
+        "y" => true,
+        "z" => true
+    );
+    return isset($huruf[strtolower($param)]) ? true : false;
+}
+function is_vocal_alphabet($param){
+    $huruf = array(
+        "a" => true,
+        "i" => true,
+        "u" => true,
+        "e" => true,
+        "o" => true
+    );
+    return isset($huruf[strtolower($param)]) ? true : false;
+}
+function is_consonant_alphabet($param){
+    $huruf = array(
+        "b" => true,
+        "c" => true,
+        "d" => true,
+        "f" => true,
+        "g" => true,
+        "h" => true,
+        "j" => true,
+        "k" => true,
+        "l" => true,
+        "m" => true,
+        "n" => true,
+        "p" => true,
+        "q" => true,
+        "r" => true,
+        "s" => true,
+        "t" => true,
+        "v" => true,
+        "w" => true,
+        "x" => true,
+        "y" => true,
+        "z" => true
+    );
+    return isset($huruf[strtolower($param)]) ? true : false;
+}
 function contain_name($strlower_name, $array_contain){
     $address = 0;
     $returns = false;
