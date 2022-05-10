@@ -64,7 +64,7 @@ $autoload['libraries'] = array('setting','combine','process_table','layout','dat
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'function');
+$autoload['helper'] = array('url', 'function','helpdesk');
 
 
 /*

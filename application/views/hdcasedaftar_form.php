@@ -30,9 +30,10 @@
         <div class="box-body">
                                                             
             <div class="form-group">
-                <label for="notiket" class="col-lg-2 control-label">Notiket</label>
+                <label for="notiket_display" class="col-lg-2 control-label">Notiket</label>
                 <div class="col-lg-10">
-                    <input type="text" id="notiket" class="form-control" name="notiket" placeholder="Notiket" value="<?php echo isset($notiket) ? $notiket : ""; ?>">
+                    <input disabled type="text" id="notiket_display" class="form-control" name="notiket_display" placeholder="Notiket" value="<?php echo isset($notiket) ? $notiket : ""; ?>">
+                    <input type="hidden" id="notiket" class="form-control" name="notiket" value="<?php echo isset($notiket) ? $notiket : ""; ?>">
                 </div>
             </div>
                                                                                                                                                                                     

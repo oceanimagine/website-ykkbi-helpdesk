@@ -24,7 +24,7 @@ class get_hduserlevel extends CI_Model {
         $clouse = "";
 
         if ($sSearch != '') {
-            $clouse = " where kode_level like '%" . $sSearch . "%' ";
+            $clouse = " where nama_level like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select kode_level, nama_level from hduserlevel" . $clouse . "";

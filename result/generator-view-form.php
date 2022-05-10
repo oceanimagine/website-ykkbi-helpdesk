@@ -284,12 +284,12 @@ if(mysqli_num_rows($query_describe) > 0){
                 \$query_max = mysqli_query(\$connect, \"select ".$hasil_describe['Field']." from ".$nama_tabel." order by ".$hasil_describe['Field']." desc\");
                 if(mysqli_num_rows(\$query_max) > 0){
                     \$hasil_max = mysqli_fetch_array(\$query_max);
-                    \$only_number = (int) substr(3, \$hasil_max['".$hasil_describe['Field']."']);
+                    \$only_number = (int) substr(\$hasil_max['".$hasil_describe['Field']."'], -5);
                     \$only_number_plus_1 = \$only_number + 1;
                 } else {
                     \$only_number_plus_1 = 1;
                 }
-                \$gabungan = \"$nama_tabel\" . samakan(\$only_number_plus_1, \"10000\");
+                \$gabungan = \"". strtoupper($nama_tabel),"\" . samakan(\$only_number_plus_1, \"10000\");
             }
             ?>
 ";  

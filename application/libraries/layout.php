@@ -12,6 +12,7 @@ class layout {
     private $enter_count = 0;
     private $result_call = "";
     private $combinecall = [];
+    private $variable_return = [];
     
     public function __construct($layout = "lite", $config_sequence = "", $layout_stay = false) {    
         if(!defined("layout_folder")){
@@ -106,6 +107,13 @@ class layout {
     /* ----------------------------------------*/
     /* Begin View Process Library */
     
+    public function callFunction($param){
+        $GLOBALS['class_name'] = get_class($param['class_active']);
+        $GLOBALS['id_user'] = isset($_POST['pelapor_nip']) ? $_POST['pelapor_nip'] : "001";
+        eval("\$GLOBALS['no_tiket'] = " . $param['function_name'] . "();");
+        $this->variable_return = array($param['variable_return'] => $GLOBALS['no_tiket']);
+    }
+    
     public function loadView($view_file, $variable = array(), $setting_use = false){
         if(!defined("layout_use")){
             define("layout_use", $this->layout);
@@ -115,9 +123,9 @@ class layout {
         $this->combinecall = new combine();
         
         if(is_array($view_file)){
-            $this->process_array_view($view_file, $variable);
+            $this->process_array_view($view_file, array_merge($variable, $this->variable_return));
         } else {
-            $this->process_regular_view($view_file, $variable);
+            $this->process_regular_view($view_file, array_merge($variable, $this->variable_return));
         }
     }
     

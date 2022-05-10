@@ -35,17 +35,13 @@ class hdsatker extends CI_Controller {
     }
     
     public function edit($id){
-        if($this->input->post('satker_kode')){
+        if($this->input->post('satker_nama')){
             $_GET['id'] = $id;
-            
-            $satker_kode = $this->input->post('satker_kode');
             $satker_nama = $this->input->post('satker_nama');
             $this->get_hdsatker->process(array(
                 'action' => 'update',
                 'table' => 'hdsatker',
                 'column_value' => array(
-                    
-                    'satker_kode' => $satker_kode,
                     'satker_nama' => $satker_nama
                 ),
                 'where' => 'satker_kode = \''.$id.'\''
@@ -72,17 +68,31 @@ class hdsatker extends CI_Controller {
     public function add(){
         if($this->input->post('satker_kode')){
             
-            $satker_kode = $this->input->post('satker_kode');
+            $satker_kode = strtoupper($this->input->post('satker_kode'));
             $satker_nama = $this->input->post('satker_nama');
+            
             $this->get_hdsatker->process(array(
-                'action' => 'insert',
+                'action' => 'select',
                 'table' => 'hdsatker',
                 'column_value' => array(
-                    
-                    'satker_kode' => $satker_kode,
-                    'satker_nama' => $satker_nama
-                )
+                    'satker_kode'
+                ),
+                'where' => 'satker_kode = \''.$satker_kode.'\''
             ));
+            $data_single = $this->all;
+            if(sizeof($data_single) == 0){
+                $this->get_hdsatker->process(array(
+                    'action' => 'insert',
+                    'table' => 'hdsatker',
+                    'column_value' => array(
+
+                        'satker_kode' => $satker_kode,
+                        'satker_nama' => $satker_nama
+                    )
+                ));
+            } else {
+                Message::set("Satker Kode Sudah Tersedia.");
+            }
             redirect('hdsatker/add');
         }
         $this->layout->loadView('hdsatker_form');

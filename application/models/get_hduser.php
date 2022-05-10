@@ -24,7 +24,7 @@ class get_hduser extends CI_Model {
         $clouse = "";
 
         if ($sSearch != '') {
-            $clouse = " where user_id like '%" . $sSearch . "%' ";
+            $clouse = " where user_nama like '%" . $sSearch . "%' or user_id like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select user_id, user_password, user_nip, user_nama, user_satker, user_email, user_level, inputnama, inputtgl, inputjam from hduser" . $clouse . "";

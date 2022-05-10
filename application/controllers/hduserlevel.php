@@ -35,17 +35,13 @@ class hduserlevel extends CI_Controller {
     }
     
     public function edit($id){
-        if($this->input->post('kode_level')){
+        if($this->input->post('nama_level')){
             $_GET['id'] = $id;
-            
-            $kode_level = $this->input->post('kode_level');
             $nama_level = $this->input->post('nama_level');
             $this->get_hduserlevel->process(array(
                 'action' => 'update',
                 'table' => 'hduserlevel',
                 'column_value' => array(
-                    
-                    'kode_level' => $kode_level,
                     'nama_level' => $nama_level
                 ),
                 'where' => 'kode_level = \''.$id.'\''
@@ -72,17 +68,32 @@ class hduserlevel extends CI_Controller {
     public function add(){
         if($this->input->post('kode_level')){
             
-            $kode_level = $this->input->post('kode_level');
+            $kode_level = strtoupper($this->input->post('kode_level'));
             $nama_level = $this->input->post('nama_level');
+            
             $this->get_hduserlevel->process(array(
-                'action' => 'insert',
+                'action' => 'select',
                 'table' => 'hduserlevel',
                 'column_value' => array(
-                    
-                    'kode_level' => $kode_level,
-                    'nama_level' => $nama_level
-                )
+                    'kode_level'
+                ),
+                'where' => 'kode_level = \''.$kode_level.'\''
             ));
+            $data_single = $this->all;
+            
+            if(sizeof($data_single) == 0){
+                $this->get_hduserlevel->process(array(
+                    'action' => 'insert',
+                    'table' => 'hduserlevel',
+                    'column_value' => array(
+
+                        'kode_level' => $kode_level,
+                        'nama_level' => $nama_level
+                    )
+                ));
+            } else {
+                Message::set("Kode Level Sudah Tersedia.");
+            }
             redirect('hduserlevel/add');
         }
         $this->layout->loadView('hduserlevel_form');

@@ -163,6 +163,11 @@ class hdcasedaftar extends CI_Controller {
             ));
             redirect('hdcasedaftar/add');
         }
+        $this->layout->callFunction(array(
+            "function_name" => "get_no_tiket",
+            "class_active" => $this,
+            "variable_return" => "notiket"
+        ));
         $this->layout->loadView('hdcasedaftar_form');
     }
     

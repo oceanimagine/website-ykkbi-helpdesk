@@ -28,18 +28,20 @@
 <body>
     <form class="form-horizontal" method="POST" enctype="multipart/form-data">
         <div class="box-body">
-                                                            
+            
+            <?php if(!isset($kejadian_keterangan)){ ?>
             <div class="form-group">
                 <label for="kejadian_jenis" class="col-lg-2 control-label">Kejadian Jenis</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kejadian_jenis" class="form-control" name="kejadian_jenis" placeholder="Kejadian Jenis" value="<?php echo isset($kejadian_jenis) ? $kejadian_jenis : ""; ?>">
+                    <input required type="text" maxlength="2" id="kejadian_jenis" class="form-control" name="kejadian_jenis" placeholder="Kejadian Jenis" value="<?php echo isset($kejadian_jenis) ? $kejadian_jenis : ""; ?>">
                 </div>
             </div>
-                                                                                                                                                                                    
+            <?php } ?>
+            
             <div class="form-group">
                 <label for="kejadian_keterangan" class="col-lg-2 control-label">Kejadian Keterangan</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kejadian_keterangan" class="form-control" name="kejadian_keterangan" placeholder="Kejadian Keterangan" value="<?php echo isset($kejadian_keterangan) ? $kejadian_keterangan : ""; ?>">
+                    <input required type="text" id="kejadian_keterangan" class="form-control" name="kejadian_keterangan" placeholder="Kejadian Keterangan" value="<?php echo isset($kejadian_keterangan) ? $kejadian_keterangan : ""; ?>">
                 </div>
             </div>
                                                                                                                                                             

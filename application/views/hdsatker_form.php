@@ -28,18 +28,20 @@
 <body>
     <form class="form-horizontal" method="POST" enctype="multipart/form-data">
         <div class="box-body">
-                                                            
+            
+            <?php if(!isset($satker_nama)){ ?>
             <div class="form-group">
                 <label for="satker_kode" class="col-lg-2 control-label">Satker Kode</label>
                 <div class="col-lg-10">
-                    <input type="text" id="satker_kode" class="form-control" name="satker_kode" placeholder="Satker Kode" value="<?php echo isset($satker_kode) ? $satker_kode : ""; ?>">
+                    <input required type="text" maxlength="10" id="satker_kode" class="form-control" name="satker_kode" placeholder="Satker Kode" value="<?php echo isset($satker_kode) ? $satker_kode : ""; ?>">
                 </div>
             </div>
+            <?php } ?>
                                                                                                                                                                                     
             <div class="form-group">
                 <label for="satker_nama" class="col-lg-2 control-label">Satker Nama</label>
                 <div class="col-lg-10">
-                    <input type="text" id="satker_nama" class="form-control" name="satker_nama" placeholder="Satker Nama" value="<?php echo isset($satker_nama) ? $satker_nama : ""; ?>">
+                    <input required type="text" id="satker_nama" class="form-control" name="satker_nama" placeholder="Satker Nama" value="<?php echo isset($satker_nama) ? $satker_nama : ""; ?>">
                 </div>
             </div>
                                                                                                                                                             

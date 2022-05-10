@@ -35,17 +35,13 @@ class hdcasejenis extends CI_Controller {
     }
     
     public function edit($id){
-        if($this->input->post('kejadian_jenis')){
+        if($this->input->post('kejadian_keterangan')){
             $_GET['id'] = $id;
-            
-            $kejadian_jenis = $this->input->post('kejadian_jenis');
             $kejadian_keterangan = $this->input->post('kejadian_keterangan');
             $this->get_hdcasejenis->process(array(
                 'action' => 'update',
                 'table' => 'hdcasejenis',
                 'column_value' => array(
-                    
-                    'kejadian_jenis' => $kejadian_jenis,
                     'kejadian_keterangan' => $kejadian_keterangan
                 ),
                 'where' => 'kejadian_jenis = \''.$id.'\''
@@ -72,17 +68,32 @@ class hdcasejenis extends CI_Controller {
     public function add(){
         if($this->input->post('kejadian_jenis')){
             
-            $kejadian_jenis = $this->input->post('kejadian_jenis');
+            $kejadian_jenis = strtoupper($this->input->post('kejadian_jenis'));
             $kejadian_keterangan = $this->input->post('kejadian_keterangan');
+            
             $this->get_hdcasejenis->process(array(
-                'action' => 'insert',
+                'action' => 'select',
                 'table' => 'hdcasejenis',
                 'column_value' => array(
-                    
-                    'kejadian_jenis' => $kejadian_jenis,
-                    'kejadian_keterangan' => $kejadian_keterangan
-                )
+                    'kejadian_jenis'
+                ),
+                'where' => 'kejadian_jenis = \''.$kejadian_jenis.'\''
             ));
+            $data_single = $this->all;
+            
+            if(sizeof($data_single) == 0){
+                $this->get_hdcasejenis->process(array(
+                    'action' => 'insert',
+                    'table' => 'hdcasejenis',
+                    'column_value' => array(
+
+                        'kejadian_jenis' => $kejadian_jenis,
+                        'kejadian_keterangan' => $kejadian_keterangan
+                    )
+                ));
+            } else {
+                Message::set("Kejadian Jenis Sudah Tersedia.");
+            }
             redirect('hdcasejenis/add');
         }
         $this->layout->loadView('hdcasejenis_form');

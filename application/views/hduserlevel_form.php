@@ -28,18 +28,20 @@
 <body>
     <form class="form-horizontal" method="POST" enctype="multipart/form-data">
         <div class="box-body">
-                                                            
+                     
+            <?php if(!isset($nama_level)){ ?>
             <div class="form-group">
                 <label for="kode_level" class="col-lg-2 control-label">Kode Level</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kode_level" class="form-control" name="kode_level" placeholder="Kode Level" value="<?php echo isset($kode_level) ? $kode_level : ""; ?>">
+                    <input maxlength="1" required type="text" id="kode_level" class="form-control" name="kode_level" placeholder="Kode Level" value="<?php echo isset($kode_level) ? $kode_level : ""; ?>">
                 </div>
             </div>
+            <?php } ?>
                                                                                                                                                                                     
             <div class="form-group">
                 <label for="nama_level" class="col-lg-2 control-label">Nama Level</label>
                 <div class="col-lg-10">
-                    <input type="text" id="nama_level" class="form-control" name="nama_level" placeholder="Nama Level" value="<?php echo isset($nama_level) ? $nama_level : ""; ?>">
+                    <input type="text" required id="nama_level" class="form-control" name="nama_level" placeholder="Nama Level" value="<?php echo isset($nama_level) ? $nama_level : ""; ?>">
                 </div>
             </div>
                                                                                                                                                             

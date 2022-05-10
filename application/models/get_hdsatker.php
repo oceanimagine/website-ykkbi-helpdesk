@@ -24,7 +24,7 @@ class get_hdsatker extends CI_Model {
         $clouse = "";
 
         if ($sSearch != '') {
-            $clouse = " where satker_kode like '%" . $sSearch . "%' ";
+            $clouse = " where satker_nama like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select satker_kode, satker_nama from hdsatker" . $clouse . "";

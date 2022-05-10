@@ -36,19 +36,19 @@
                 $query_max = mysqli_query($connect, "select user_id from hduser order by user_id desc");
                 if(mysqli_num_rows($query_max) > 0){
                     $hasil_max = mysqli_fetch_array($query_max);
-                    $only_number = (int) substr(3, $hasil_max['user_id']);
+                    $only_number = (int) substr($hasil_max['user_id'], -5);
                     $only_number_plus_1 = $only_number + 1;
                 } else {
                     $only_number_plus_1 = 1;
                 }
-                $gabungan = "hduser" . samakan($only_number_plus_1, "10000");
+                $gabungan = "HDUSER" . samakan($only_number_plus_1, "10000");
             }
             ?>
             
             <div class="form-group">
                 <label for="user_id" class="col-lg-2 control-label">User Id</label>
                 <div class="col-lg-10">
-                    <input readonly type="text" id="user_id" class="form-control" name="user_id" placeholder="User Id" value="<?php echo isset($user_id) ? $user_id : $gabungan; ?>">
+                    <input required readonly type="text" id="user_id" class="form-control" name="user_id" placeholder="User Id" value="<?php echo isset($user_id) ? $user_id : $gabungan; ?>">
                 </div>
             </div>
                                                                                                                                                             

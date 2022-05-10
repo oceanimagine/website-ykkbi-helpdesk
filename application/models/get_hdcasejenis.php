@@ -24,7 +24,7 @@ class get_hdcasejenis extends CI_Model {
         $clouse = "";
 
         if ($sSearch != '') {
-            $clouse = " where kejadian_jenis like '%" . $sSearch . "%' ";
+            $clouse = " where kejadian_keterangan like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select kejadian_jenis, kejadian_keterangan from hdcasejenis" . $clouse . "";

@@ -47,13 +47,13 @@
             <div class="form-group">
                 <label for="username" class="col-lg-2 control-label">username</label>
                 <div class="col-lg-10">
-                    <input type="text" id="username" class="form-control" name="username" placeholder="username" value="<?php echo isset($username) ? $username : ""; ?>">
+                    <input required type="text" id="username" class="form-control" name="username" placeholder="username" value="<?php echo isset($username) ? $username : ""; ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="col-lg-2 control-label">password</label>
                 <div class="col-lg-10">
-                    <input type="password" id="password" class="form-control" name="password" placeholder="password baru">
+                    <input required type="password" id="password" class="form-control" name="password" placeholder="password baru">
                 </div>
             </div>
             <div class="form-group">

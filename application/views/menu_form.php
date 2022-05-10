@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="nama_menu" class="col-lg-2 control-label">nama menu</label>
                 <div class="col-lg-10">
-                    <input type="text" id="nama_menu" class="form-control" name="nama_menu" placeholder="nama menu" value="<?php echo isset($nama_menu) ? $nama_menu : ""; ?>">
+                    <input required type="text" id="nama_menu" class="form-control" name="nama_menu" placeholder="nama menu" value="<?php echo isset($nama_menu) ? $nama_menu : ""; ?>">
                 </div>
             </div>
             <div class="form-group">
