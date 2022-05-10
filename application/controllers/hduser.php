@@ -68,6 +68,27 @@ class hduser extends CI_Controller {
             ));
             redirect('hduser/edit/'.$id.'');
         }
+        
+        $this->get_hduser->process(array(
+            'action' => 'select',
+            'table' => 'hduserlevel',
+            'column_value' => array(
+                'kode_level',
+                'nama_level'
+            )
+        ));
+        $data_level = $this->all;
+        
+        $this->get_hduser->process(array(
+            'action' => 'select',
+            'table' => 'hdsatker',
+            'column_value' => array(
+                'satker_kode',
+                'satker_nama'
+            )
+        ));
+        $data_satker = $this->all;
+        
         $this->get_hduser->process(array(
             'action' => 'select',
             'table' => 'hduser',
@@ -97,7 +118,9 @@ class hduser extends CI_Controller {
             'user_level' => $this->row->{'user_level'},
             'inputnama' => $this->row->{'inputnama'},
             'inputtgl' => $this->row->{'inputtgl'},
-            'inputjam' => $this->row->{'inputjam'}
+            'inputjam' => $this->row->{'inputjam'},
+            'data_level' => $data_level,
+            'data_satker' => $data_satker
         ));
     }
     
@@ -133,7 +156,31 @@ class hduser extends CI_Controller {
             ));
             redirect('hduser/add');
         }
-        $this->layout->loadView('hduser_form');
+        
+        $this->get_hduser->process(array(
+            'action' => 'select',
+            'table' => 'hduserlevel',
+            'column_value' => array(
+                'kode_level',
+                'nama_level'
+            )
+        ));
+        $data_level = $this->all;
+        
+        $this->get_hduser->process(array(
+            'action' => 'select',
+            'table' => 'hdsatker',
+            'column_value' => array(
+                'satker_kode',
+                'satker_nama'
+            )
+        ));
+        $data_satker = $this->all;
+        
+        $this->layout->loadView('hduser_form', array(
+            "data_level" => $data_level,
+            "data_satker" => $data_satker
+        ));
     }
     
     public function index() {

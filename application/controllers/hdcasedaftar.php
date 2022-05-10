@@ -163,12 +163,72 @@ class hdcasedaftar extends CI_Controller {
             ));
             redirect('hdcasedaftar/add');
         }
+        
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hduser',
+            'column_value' => array(
+                'inputnama',
+                'user_nip'
+            )
+        ));
+        $data_hduser = $this->all;
+        
         $this->layout->callFunction(array(
             "function_name" => "get_no_tiket",
             "class_active" => $this,
             "variable_return" => "notiket"
         ));
-        $this->layout->loadView('hdcasedaftar_form');
+        $this->layout->loadView('hdcasedaftar_form', array(
+            "data_hduser" => $data_hduser
+        ));
+    }
+    
+    public function get_nama($nip){
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hduser',
+            'column_value' => array(
+                'inputnama'
+            ),
+            'where' => 'user_nip = \''.$nip.'\''
+        ));
+        $data_user = $this->all;
+        $nama = "UNDEFINED";
+        if(sizeof($data_user) > 0){
+            $nama = $data_user[0]->inputnama;
+        }
+        echo $nama;
+    }
+    
+    public function get_satker($nip){
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hduser',
+            'column_value' => array(
+                'user_satker'
+            ),
+            'where' => 'user_nip = \''.$nip.'\''
+        ));
+        $data_user_satker = $this->all;
+        $satker_nama = "UNDEFINED";
+        $satker_kode = "UNDEFINED";
+        if(sizeof($data_user_satker) > 0){
+            $satker_kode = $data_user_satker[0]->user_satker;
+            $this->get_hdcasedaftar->process(array(
+                'action' => 'select',
+                'table' => 'hdsatker',
+                'column_value' => array(
+                    'satker_nama'
+                ),
+                'where' => 'satker_kode = \''.$satker_kode.'\''
+            ));
+            $data_satker = $this->all;
+            if(sizeof($data_satker) > 0){
+                $satker_nama = $data_satker[0]->satker_nama;
+            }
+        }
+        echo json_encode(array("satker_nama" => $satker_nama, "satker_kode" => $satker_kode));
     }
     
     public function index() {

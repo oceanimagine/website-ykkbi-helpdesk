@@ -59,16 +59,15 @@
                             <tr>
                                 <th>No</th>
                                                                                                 
-                                <th>User Id</th>                                                                                                
-                                <th>User Password</th>                                                                                                
-                                <th>User Nip</th>                                                                                                
-                                <th>User Nama</th>                                                                                                
-                                <th>User Satker</th>                                                                                                
-                                <th>User Email</th>                                                                                                
+                                <th>User Id</th>                                                                                               
+                                <th>Nip</th>                                                                                                
+                                <th>Username</th>                                                                                                
+                                <th>Satker</th>                                                                                                
+                                <th>Email</th>                                                                                                
                                 <th>User Level</th>                                                                                                
-                                <th>Inputnama</th>                                                                                                
-                                <th>Inputtgl</th>                                                                                                
-                                <th>Inputjam</th>                                                                
+                                <th>Nama Lengkap</th>                                                                                                
+                                <th>Input Tanggal</th>                                                                                                
+                                <th>Input Jam</th>                                                                
                                 <th>Action</th>
                             </tr>
                         </thead>

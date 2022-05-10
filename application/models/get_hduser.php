@@ -32,7 +32,7 @@ class get_hduser extends CI_Model {
         $query_total = $this->db->query($sql_total);
         $total = $query_total->num_rows();
 
-        $sql = "select user_id, user_password, user_nip, user_nama, user_satker, user_email, user_level, inputnama, inputtgl, inputjam from hduser".$clouse." order by user_id asc limit $iDisplayStart , $iDisplayLength";
+        $sql = "select user_id, user_nip, user_nama, (select satker_nama from hdsatker where satker_kode = user_satker) user_satker, user_email, (select nama_level from hduserlevel where kode_level = user_level) user_level, inputnama, inputtgl, inputjam from hduser".$clouse." order by user_id asc limit $iDisplayStart , $iDisplayLength";
 
         $page = ($iDisplayStart / $iDisplayLength);
 

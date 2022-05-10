@@ -60,7 +60,7 @@
                                 <th>No</th>
                                                                                                 
                                 <th>Notiket</th>                                                                                                
-                                <th>Pelaporan Tgl</th>                                                                                                
+                                <th>Pelaporan Tanggal</th>                                                                                                
                                 <th>Pelaporan Jam</th>                                                                                                
                                 <th>Pelapor Nip</th>                                                                                                
                                 <th>Pelapor Satker</th>                                                                                                
@@ -69,11 +69,11 @@
                                 <th>Prioritas</th>                                                                                                
                                 <th>Kejadian Status</th>                                                                                                
                                 <th>Penyelesaian Keterangan</th>                                                                                                
-                                <th>Penyelesaian Tgl</th>                                                                                                
+                                <th>Penyelesaian Tanggal</th>                                                                                                
                                 <th>Penyelesaian Nip</th>                                                                                                
-                                <th>Inputnama</th>                                                                                                
-                                <th>Inputtgl</th>                                                                                                
-                                <th>Inputjam</th>                                                                
+                                <th>Penyelesaian Nama Lengkap</th>                                                                                                
+                                <th>Input Tanggal</th>                                                                                                
+                                <th>Input Jam</th>                                                                
                                 <th>Action</th>
                             </tr>
                         </thead>
