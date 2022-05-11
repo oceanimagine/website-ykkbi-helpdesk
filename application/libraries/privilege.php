@@ -4,7 +4,8 @@ class Privilege {
     public static function admin(){
 	$GLOBALS['PRIV_ACTIVE'] = array(
 	    "SUPERADMIN" => true,
-            "ADMIN" => true
+            "ADMIN" => true,
+            "HDUSER" => true
 	);
 	$jenis_privilege = array_keys($GLOBALS['PRIV_ACTIVE']);
         if(session_status() == PHP_SESSION_NONE) {
