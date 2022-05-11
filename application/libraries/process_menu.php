@@ -17,13 +17,39 @@ class process_menu {
         if(isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN"){
             $this->set_privilege_all();
         }
-        if(isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"){
+        if(isset($_SESSION['PRI']) && ($_SESSION['PRI'] == "ADMIN" || $_SESSION['PRI'] == "HDUSER")){
             if(isset($_SESSION['USR'])){
                 $this->set_privilege($_SESSION['USR']);
             }
         }
         $this->session_menu = isset($_SESSION['MENU']) && is_array($_SESSION['MENU']) ? $_SESSION['MENU'] : array();
+        $array_keys_menu = array_keys($this->session_menu);
+        for($i = 0; $i < sizeof($array_keys_menu); $i++){
+            $query_parent = "select parent_id from tbl_menu where id = '".$array_keys_menu[$i]."' order by id asc";
+            $hasil_parent = $this->model->kueri($query_parent);
+            if ($hasil_parent->num_rows() > 0){
+                foreach ($hasil_parent->result() as $row_id){
+                    if(!isset($this->session_menu[$row_id->parent_id])){
+                        $this->session_menu[$row_id->parent_id] = true;
+                        $this->get_all_menu_parent($row_id->parent_id);
+                    }
+                }
+            }
+        }
         $this->id_user = isset($_GET['id']) && $_GET['id'] != "" && is_numeric($_GET['id']) ? $_GET['id'] : "0";
+    }
+    
+    public function get_all_menu_parent($id_menu){
+        $query_parent = "select parent_id from tbl_menu where id = '".$id_menu."' order by id asc";
+        $hasil_parent = $this->model->kueri($query_parent);
+        if ($hasil_parent->num_rows() > 0){
+            foreach ($hasil_parent->result() as $row_id){
+                if(!isset($this->session_menu[$row_id->parent_id])){
+                    $this->session_menu[$row_id->parent_id] = true;
+                    $this->get_all_menu_parent($row_id->parent_id);
+                }
+            }
+        }
     }
     
     public function set_parent($id_menu){
@@ -46,7 +72,8 @@ class process_menu {
             'where' => 'id_user = \''.$id_admin.'\'' 
         ));
         foreach($this->CI->all as $row){
-            $this->set_parent($row->id_menu);
+            // $this->set_parent($row->id_menu);
+            $_SESSION['MENU'][$row->id_menu] = true;
         }
     }
     
@@ -82,10 +109,12 @@ class process_menu {
         $hasil = $this->model->kueri($query);
         $menu_ = "";
 	$ada_sub = 0;
+        
         if ($hasil->num_rows() > 0){
             /*  menu-open */
             $menu_ = $id_parent > 0 ? "<ul class=\"treeview-menu replace_open\" replace_style>\n" : "";
             foreach ($hasil->result() as $row){
+                
                 if(isset($this->session_menu[$row->id]) && $this->session_menu[$row->id]){
 		    $active = "";
 		    if($this->CI->uri->segment(1) == $row->module){
