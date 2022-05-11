@@ -59,7 +59,7 @@ class Login extends CI_Controller {
                             'user_nip',
                             'user_nama'
                         ),
-                        'where' => 'user_nip = \''.$username.'\' and user_password = \''.$password.'\'',
+                        'where' => 'user_nama = \''.$username.'\' and user_password = \''.$password.'\'',
                         'order' => 'user_id desc'
                     ));
                     $hduser_active = $this->row;
