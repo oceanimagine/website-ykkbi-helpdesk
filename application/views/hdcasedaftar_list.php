@@ -51,8 +51,10 @@
                 <div class="panel panel-success" style="font-family: consolas, monospace !important; cursor: default; border-color: #adadad;">
                     <!-- Default panel contents -->
                     <div class="panel-heading" style="padding-bottom: 10px; color: black; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #ffffff)) !important;">
-                        List Hdcasedaftar                        
+                        List Hdcasedaftar  
+                        <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
                         <a id="addData" href="../../../index.php/hdcasedaftar/add" class="btn btn-primary btn-xs pull-right hidden-xs bg-green-gradient"><span class="glyphicon glyphicon-plus"></span>&nbsp;New Hdcasedaftar</a>
+                        <?php } ?>
                     </div>
                     <table id="table-data" class="table table-bordered table-hover">
                         <thead>
@@ -60,20 +62,39 @@
                                 <th>No</th>
                                                                                                 
                                 <th>Notiket</th>                                                                                                
+                                
+                                <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
                                 <th>Pelaporan Tanggal</th>                                                                                                
                                 <th>Pelaporan Jam</th>                                                                                                
                                 <th>Pelapor Nip</th>                                                                                                
                                 <th>Pelapor Satker</th>                                                                                                
                                 <th>Kejadian Jenis</th>                                                                                                
-                                <th>Kejadian Deskripsi</th>                                                                                                
                                 <th>Prioritas</th>                                                                                                
-                                <th>Kejadian Status</th>                                                                                                
-                                <th>Penyelesaian Keterangan</th>                                                                                                
+                                <th>Kejadian Status</th> 
+                                
+                                <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']])){ ?>
+                                <th>Input Tanggal</th>                                                                                                
+                                <th>Input Jam</th> 
+                                <?php } ?>
+                                
+                                <?php } ?>
+                                
+                                <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
+                                
+                                <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']])){ ?>
+                                <th>Pelaporan Tanggal</th>                                                                                                
+                                <th>Pelaporan Jam</th> 
+                                <th>Pelapor Nip</th>                                                                                                
+                                <th>Pelapor Satker</th>   
+                                <th>Kejadian Jenis</th>  
+                                <?php } ?>
+                                
                                 <th>Penyelesaian Tanggal</th>                                                                                                
                                 <th>Penyelesaian Nip</th>                                                                                                
                                 <th>Penyelesaian Nama Lengkap</th>                                                                                                
                                 <th>Input Tanggal</th>                                                                                                
-                                <th>Input Jam</th>                                                                
+                                <th>Input Jam</th>    
+                                <?php } ?>
                                 <th>Action</th>
                             </tr>
                         </thead>

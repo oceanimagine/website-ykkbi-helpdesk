@@ -29,7 +29,13 @@ $GLOBALS['host'] = $host;
 $GLOBALS['user'] = $user;
 $GLOBALS['pass'] = $pass;
 $GLOBALS['data'] = $data;
-$GLOBALS['tinymce_base'] = ($_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['SERVER_NAME'] . ($_SERVER['SERVER_PORT'] != '80' ? ":" . $_SERVER['SERVER_PORT'] : "")) . $GLOBALS['base_administrator'] . "application/layout/lite/js/tinymce/js/tinymce/plugins/jbimages/images";
+$GLOBALS['tinymce_base'] = $GLOBALS['base_administrator'] . "application/layout/lite/js/tinymce/js/tinymce/plugins/jbimages/images";
+$GLOBALS['privilege_satker'] = array(
+    "2" => true
+);
+$GLOBALS['privilege_ti'] = array(
+    "3" => true
+);
 
 /* Additional Function */
 function check_url_index_php(){

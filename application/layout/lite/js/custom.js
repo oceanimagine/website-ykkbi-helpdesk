@@ -1,7 +1,8 @@
 var tinymce = typeof tinymce !== "undefined" ? tinymce : {};
+var disabled_textarea = typeof disabled_textarea !== "undefined" ? disabled_textarea : {};
 tinymce.init({
     selector: "textarea.texteditor",
-
+    
     // ===========================================
     // INCLUDE THE PLUGIN
     // ===========================================
@@ -22,7 +23,14 @@ tinymce.init({
     // SET RELATIVE_URLS to FALSE (This is required for images to display properly)
     // ===========================================
 
-    relative_urls: false
+    relative_urls: false,
+    setup: function (ed) {
+        ed.on('init', function(args) {
+            if(typeof disabled_textarea !== "undefined" && typeof disabled_textarea[args.target.id] !== "undefined" && disabled_textarea[args.target.id]){
+                ed.setMode("readonly");
+            }
+        });
+    }
 });
 
 var mulai_label = typeof mulai_label === "undefined" ? 1 : mulai_label;

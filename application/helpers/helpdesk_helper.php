@@ -12,9 +12,9 @@ function get_no_tiket(){
         $substring = substr($hasil_max['notiket'], -6);
         $substring_int = (int) $substring;
         $increment = $substring_int + 1;
-        $nomor_tiket = "HD" . date("YmdHis") . samakan($id_user, "000000") . samakan($increment, "000000");
+        $nomor_tiket = "HD" . date("YmdHis") . samakan($id_user, "00000000") . samakan($increment, "00000000");
     } else {
-        $nomor_tiket = "HD" . date("YmdHis") . samakan($id_user, "000000") . samakan($increment, "000000");
+        $nomor_tiket = "HD" . date("YmdHis") . samakan($id_user, "00000000") . samakan($increment, "00000000");
     }
     return $nomor_tiket;
 }

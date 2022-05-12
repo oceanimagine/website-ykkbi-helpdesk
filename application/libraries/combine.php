@@ -162,8 +162,8 @@ class combine {
         );
         $array_replace = array(
             $isi_body, 
-            user, 
-            priviledge, 
+            (user == "SUPERADMIN" ? user : (isset($_SESSION['username']) ? substr($_SESSION['username'], 0, 20) : "")), 
+            (priviledge == "SUPERADMIN" ? priviledge : (isset($_SESSION['username']) ? substr($_SESSION['username'], 0, 20) : "")), 
             $title, 
             $menu_li[0]
         );

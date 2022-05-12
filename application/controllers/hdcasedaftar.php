@@ -78,6 +78,27 @@ class hdcasedaftar extends CI_Controller {
             ));
             redirect('hdcasedaftar/edit/'.$id.'');
         }
+        
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hduser',
+            'column_value' => array(
+                'inputnama',
+                'user_nip'
+            )
+        ));
+        $data_hduser = $this->all;
+        
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hdcasejenis',
+            'column_value' => array(
+                'kejadian_jenis',
+                'kejadian_keterangan'
+            )
+        ));
+        $data_kejadian_jenis = $this->all;
+        
         $this->get_hdcasedaftar->process(array(
             'action' => 'select',
             'table' => 'hdcasedaftar',
@@ -117,7 +138,9 @@ class hdcasedaftar extends CI_Controller {
             'penyelesaian_nip' => $this->row->{'penyelesaian_nip'},
             'inputnama' => $this->row->{'inputnama'},
             'inputtgl' => $this->row->{'inputtgl'},
-            'inputjam' => $this->row->{'inputjam'}
+            'inputjam' => $this->row->{'inputjam'},
+            "data_hduser" => $data_hduser,
+            "data_kejadian_jenis" => $data_kejadian_jenis
         ));
     }
     
@@ -158,7 +181,7 @@ class hdcasedaftar extends CI_Controller {
                     'penyelesaian_nip' => $penyelesaian_nip,
                     'inputnama' => $inputnama,
                     'inputtgl' => $inputtgl,
-                    'inputjam' => $inputjam
+                    'inputjam' => $inputjam,
                 )
             ));
             redirect('hdcasedaftar/add');

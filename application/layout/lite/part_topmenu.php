@@ -4,7 +4,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>H</b>LP</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b> Helpdesk</span>
+        <span class="logo-lg"><b>Helpdesk</b> YKKBI</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
@@ -36,7 +36,7 @@
                         <li class="user-header" style="white-space: nowrap;">
                             <img src="image/LOGOYKKBI.png" class="img-circle" alt="User Image">
                             <p>
-                                {priviledge} - <?php echo "Admin DXB"; ?>
+                                {priviledge}
                                 <small>Location : <?php echo "Jakarta"; ?></small>
                             </p>
                         </li>

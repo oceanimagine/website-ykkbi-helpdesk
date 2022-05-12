@@ -20,8 +20,9 @@ class Login extends CI_Controller {
             
             if($username == "helpdesk" && $password == "helpdesk"){
                 $_SESSION['PRI'] = "SUPERADMIN";
-                $this->layout->render_alert("Welcome Admin.");
-		Message::set("Berhasil login sebagai admin super.");
+                $_SESSION['nomor_admin'] = "AS1"; 
+                $this->layout->render_alert("Welcome Admin Super.");
+		Message::set("Berhasil login sebagai Admin Super.");
                 redirect("home");
             } else {
                 $this->get_login->process(array(
@@ -44,10 +45,10 @@ class Login extends CI_Controller {
                     $_SESSION['id'] = $user_active->id;
                     $_SESSION['nama_lengkap'] = $user_active->nama_lengkap;
                     $_SESSION['photo_admin'] = $user_active->photo_admin;
-                    $_SESSION['nomor_karyawan'] = $user_active->nomor_karyawan;
+                    $_SESSION['nomor_admin'] = "AB" . $user_active->nomor_karyawan; 
                     $_SESSION['username'] = $user_active->username;
                     $this->layout->render_alert("Welcome Admin.");
-                    Message::set("Berhasil login sebagai admin.");
+                    Message::set("Berhasil login sebagai Admin.");
                     redirect("home");
                 } else {
                     $this->get_login->process(array(
@@ -57,7 +58,8 @@ class Login extends CI_Controller {
                             'user_id',
                             'user_password',
                             'user_nip',
-                            'user_nama'
+                            'user_nama',
+                            'user_level'
                         ),
                         'where' => 'user_nama = \''.$username.'\' and user_password = \''.$password.'\'',
                         'order' => 'user_id desc'
@@ -70,8 +72,9 @@ class Login extends CI_Controller {
                         $_SESSION['nama_lengkap'] = $hduser_active->user_nama;
                         $_SESSION['nomor_karyawan'] = $hduser_active->user_nip;
                         $_SESSION['username'] = $hduser_active->user_nama;
-                        $this->layout->render_alert("Welcome Admin.");
-                        Message::set("Berhasil login sebagai admin.");
+                        $_SESSION['userlevel'] = $hduser_active->user_level;
+                        $this->layout->render_alert("Welcome Satker.");
+                        Message::set("Berhasil login sebagai Satker.");
                         redirect("home");
                     }
                 }

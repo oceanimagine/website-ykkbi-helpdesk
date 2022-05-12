@@ -62,16 +62,24 @@
                 </div>
             </div>
                      
+            <!-- User Satker dan Admin -->
+            <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
             <div class="form-group">
                 <label for="pelapor_nip" class="col-lg-2 control-label">Pelapor Nip</label>
                 <div class="col-lg-10">
-                    <select onchange="get_satker(this);" name="pelapor_nip" id="pelapor_nip" class="form-control">
+                    <select onchange="get_satker(this);" name="pelapor_nip" id="pelapor_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
                         <option value="">PILIH NIP</option>
                         <?php foreach($data_hduser as $data){ ?>
-                        <?php $selected = isset($pelapor_nip) && $pelapor_nip == $data->user_nip ? " selected='selected'" : ""; ?>
+                        <?php $selected = (isset($pelapor_nip) && $pelapor_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip) ? " selected='selected'" : ""; ?>
                         <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
                         <?php } ?>
                     </select>
+                    <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
+                    <script type="text/javascript">
+                    get_satker({"value" : "<?php echo $_SESSION['nomor_karyawan']; ?>"});
+                    </script>
+                    <input type="hidden" name="pelapor_nip" value="<?php echo $_SESSION['nomor_karyawan']; ?>" />
+                    <?php } ?>
                 </div>
             </div>
                                                                                                                                                                                     
@@ -121,25 +129,6 @@
             </div>
             
             <div class="form-group">
-                <label for="kejadian_status" class="col-lg-2 control-label">Kejadian Status</label>
-                <div class="col-lg-10">
-                    <select name="kejadian_status" id="kejadian_status" class="form-control">
-                        <option value="">PILIH STATUS</option>
-                        <option value="open" <?php echo isset($kejadian_status) && $kejadian_status == "open" ? " selected" : ""; ?>>Open</option>
-                        <option value="close" <?php echo isset($kejadian_status) && $kejadian_status == "close" ? " selected" : ""; ?>>Close</option>
-                        <option value="pending" <?php echo isset($kejadian_status) && $kejadian_status == "pending" ? " selected" : ""; ?>>Pending</option>
-                    </select>
-                </div>
-            </div>
-                                                                                                                                                                                    
-            <div class="form-group">
-                <label for="kejadian_deskripsi" class="col-lg-2 control-label">Kejadian Deskripsi</label>
-                <div class="col-lg-10">
-                    <textarea class="form-control texteditor" id="kejadian_deskripsi" name="kejadian_deskripsi" placeholder="Kejadian Deskripsi"><?php echo isset($kejadian_deskripsi) ? $kejadian_deskripsi : ""; ?></textarea>
-                </div>
-            </div>
-                                                                                                                                                                                    
-            <div class="form-group">
                 <label for="prioritas" class="col-lg-2 control-label">Prioritas</label>
                 <div class="col-lg-10">
                     <select name="prioritas" id="prioritas" class="form-control">
@@ -149,18 +138,33 @@
                         <option value="tinggi" <?php echo isset($prioritas) && $prioritas == "tinggi" ? " selected" : ""; ?>>Tinggi</option>
                     </select>
                 </div>
-            </div>
+            </div>    
+                                                                                                                                                                                    
+            <div class="form-group">
+                <label for="kejadian_deskripsi" class="col-lg-2 control-label">Kejadian Deskripsi</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control texteditor" id="kejadian_deskripsi" name="kejadian_deskripsi" placeholder="Kejadian Deskripsi"><?php echo isset($kejadian_deskripsi) ? $kejadian_deskripsi : ""; ?></textarea>
+                </div>
+            </div>  
+            <?php } ?>
             
+            <!-- User TI dan Admin -->
+            <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
             <div class="form-group">
                 <label for="penyelesaian_nip" class="col-lg-2 control-label">Penyelesaian Nip</label>
                 <div class="col-lg-10">
-                    <select onchange="get_nama(this);" name="penyelesaian_nip" id="penyelesaian_nip" class="form-control">
+                    <select onchange="get_nama(this);" name="penyelesaian_nip" id="penyelesaian_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
                         <option value="">PILIH NIP</option>
                         <?php foreach($data_hduser as $data){ ?>
-                        <?php $selected = isset($penyelesaian_nip) && $penyelesaian_nip == $data->user_nip ? " selected='selected'" : ""; ?>
+                        <?php $selected = ((isset($penyelesaian_nip) && $penyelesaian_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip)) ? " selected='selected'" : ""; ?>
                         <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
                         <?php } ?>
                     </select>
+                    <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
+                    <script type="text/javascript">
+                    get_nama({"value" : "<?php echo $_SESSION['nomor_karyawan']; ?>"});
+                    </script>
+                    <?php } ?>
                 </div>
             </div>
             
@@ -168,6 +172,60 @@
                 <label for="inputnama" class="col-lg-2 control-label">Penyelesaian Nama Lengkap</label>
                 <div class="col-lg-10">
                     <input readonly type="text" id="inputnama" class="form-control" name="inputnama" placeholder="Penyelesaian Nama Lengkap" value="<?php echo isset($inputnama) ? $inputnama : ""; ?>">
+                </div>
+            </div>
+            
+            <!-- User TI Only -->
+            <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']])){ ?>
+            <div class="form-group">
+                <label for="kejadian_jenis" class="col-lg-2 control-label">Kejadian Jenis</label>
+                <div class="col-lg-10">
+                    <select disabled name="kejadian_jenis" id="kejadian_jenis" class="form-control">
+                        <option value="">PILIH JENIS</option>
+                        <?php foreach($data_kejadian_jenis as $data){ ?>
+                        <?php $selected = isset($kejadian_jenis) && $kejadian_jenis == $data->kejadian_jenis ? " selected='selected'" : ""; ?>
+                        <option value="<?php echo $data->kejadian_jenis; ?>" <?php echo $selected; ?>><?php echo $data->kejadian_keterangan; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="prioritas" class="col-lg-2 control-label">Prioritas</label>
+                <div class="col-lg-10">
+                    <select disabled name="prioritas" id="prioritas" class="form-control">
+                        <option value="">PILIH PRIORITAS</option>
+                        <option value="rendah" <?php echo isset($prioritas) && $prioritas == "rendah" ? " selected" : ""; ?>>Rendah</option>
+                        <option value="sedang" <?php echo isset($prioritas) && $prioritas == "sedang" ? " selected" : ""; ?>>Sedang</option>
+                        <option value="tinggi" <?php echo isset($prioritas) && $prioritas == "tinggi" ? " selected" : ""; ?>>Tinggi</option>
+                    </select>
+                </div>
+            </div>   
+            
+            <div class="form-group">
+                <label for="kejadian_deskripsi" class="col-lg-2 control-label">Kejadian Deskripsi</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control texteditor" id="kejadian_deskripsi" name="kejadian_deskripsi" placeholder="Kejadian Deskripsi"><?php echo isset($kejadian_deskripsi) ? $kejadian_deskripsi : ""; ?></textarea>
+                </div>
+            </div>  
+            
+            <script type="text/javascript">
+            var disabled_textarea = {
+                "kejadian_deskripsi" : true
+            };
+            </script>
+            
+            <?php } ?>
+            
+            <div class="form-group">
+                <label for="kejadian_status" class="col-lg-2 control-label">Kejadian Status</label>
+                <div class="col-lg-10">
+                    <select name="kejadian_status" id="kejadian_status" class="form-control">
+                        <option value="">PILIH STATUS</option>
+                        <option value="open" <?php echo isset($kejadian_status) && $kejadian_status == "open" ? " selected" : ""; ?>>Open</option>
+                        <option value="close" <?php echo isset($kejadian_status) && $kejadian_status == "close" ? " selected" : ""; ?>>Close</option>
+                        <option value="pending" <?php echo isset($kejadian_status) && $kejadian_status == "pending" ? " selected" : ""; ?>>Pending</option>
+                    </select>
                 </div>
             </div>
                                                                                                                                                                                     
@@ -181,10 +239,11 @@
             <div class="form-group">
                 <label for="penyelesaian_tgl" class="col-lg-2 control-label">Penyelesaian Tanggal</label>
                 <div class="col-lg-10">
-                    <input type="text" id="penyelesaian_tgl" class="form-control tanggal_pilih" name="penyelesaian_tgl" placeholder="Penyelesaian Tanggal" value="<?php echo isset($penyelesaian_tgl) ? $penyelesaian_tgl : date("Y-m-d"); ?>">
+                    <input type="text" id="penyelesaian_tgl" class="form-control tanggal_pilih" name="penyelesaian_tgl" placeholder="Penyelesaian Tanggal" value="<?php echo isset($penyelesaian_tgl) && $penyelesaian_tgl != "" ? $penyelesaian_tgl : date("Y-m-d"); ?>">
                 </div>
             </div>
-                                                                                                                                                                                    
+            <?php } ?>
+            
             <div class="form-group">
                 <label for="inputtgl_display" class="col-lg-2 control-label">Input Tanggal</label>
                 <div class="col-lg-10">

@@ -109,7 +109,7 @@ class layout {
     
     public function callFunction($param){
         $GLOBALS['class_name'] = get_class($param['class_active']);
-        $GLOBALS['id_user'] = isset($_POST['pelapor_nip']) ? $_POST['pelapor_nip'] : "001";
+        $GLOBALS['id_user'] = (isset($_SESSION['nomor_karyawan']) ? $_SESSION['nomor_karyawan'] : (isset($_SESSION['nomor_admin']) ? $_SESSION['nomor_admin'] : "001"));
         eval("\$GLOBALS['no_tiket'] = " . $param['function_name'] . "();");
         $this->variable_return = array($param['variable_return'] => $GLOBALS['no_tiket']);
     }

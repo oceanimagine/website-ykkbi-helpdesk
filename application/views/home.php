@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Admin Helpdesk</title>
+	<title>Helpdesk YKKBI</title>
         <style type="text/css">
             html, body {
                 font-family: consolas, monospace;
