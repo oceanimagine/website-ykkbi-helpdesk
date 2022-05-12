@@ -67,7 +67,6 @@ include_once __DIR__ . "/../../../../../../../../../config/connect.php";
                                             j--;
                                         }
                                     }
-                                    break;
                                 }
                             }
                             location.reload();

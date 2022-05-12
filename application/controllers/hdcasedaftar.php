@@ -174,13 +174,24 @@ class hdcasedaftar extends CI_Controller {
         ));
         $data_hduser = $this->all;
         
+        $this->get_hdcasedaftar->process(array(
+            'action' => 'select',
+            'table' => 'hdcasejenis',
+            'column_value' => array(
+                'kejadian_jenis',
+                'kejadian_keterangan'
+            )
+        ));
+        $data_kejadian_jenis = $this->all;
+        
         $this->layout->callFunction(array(
             "function_name" => "get_no_tiket",
             "class_active" => $this,
             "variable_return" => "notiket"
         ));
         $this->layout->loadView('hdcasedaftar_form', array(
-            "data_hduser" => $data_hduser
+            "data_hduser" => $data_hduser,
+            "data_kejadian_jenis" => $data_kejadian_jenis
         ));
     }
     

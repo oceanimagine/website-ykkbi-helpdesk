@@ -110,28 +110,44 @@
             <div class="form-group">
                 <label for="kejadian_jenis" class="col-lg-2 control-label">Kejadian Jenis</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kejadian_jenis" class="form-control" name="kejadian_jenis" placeholder="Kejadian Jenis" value="<?php echo isset($kejadian_jenis) ? $kejadian_jenis : ""; ?>">
+                    <select name="kejadian_jenis" id="kejadian_jenis" class="form-control">
+                        <option value="">PILIH JENIS</option>
+                        <?php foreach($data_kejadian_jenis as $data){ ?>
+                        <?php $selected = isset($kejadian_jenis) && $kejadian_jenis == $data->kejadian_jenis ? " selected='selected'" : ""; ?>
+                        <option value="<?php echo $data->kejadian_jenis; ?>" <?php echo $selected; ?>><?php echo $data->kejadian_keterangan; ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
             
             <div class="form-group">
                 <label for="kejadian_status" class="col-lg-2 control-label">Kejadian Status</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kejadian_status" class="form-control" name="kejadian_status" placeholder="Kejadian Status" value="<?php echo isset($kejadian_status) ? $kejadian_status : ""; ?>">
+                    <select name="kejadian_status" id="kejadian_status" class="form-control">
+                        <option value="">PILIH STATUS</option>
+                        <option value="open" <?php echo isset($kejadian_status) && $kejadian_status == "open" ? " selected" : ""; ?>>Open</option>
+                        <option value="close" <?php echo isset($kejadian_status) && $kejadian_status == "close" ? " selected" : ""; ?>>Close</option>
+                        <option value="pending" <?php echo isset($kejadian_status) && $kejadian_status == "pending" ? " selected" : ""; ?>>Pending</option>
+                    </select>
                 </div>
             </div>
                                                                                                                                                                                     
             <div class="form-group">
                 <label for="kejadian_deskripsi" class="col-lg-2 control-label">Kejadian Deskripsi</label>
                 <div class="col-lg-10">
-                    <input type="text" id="kejadian_deskripsi" class="form-control" name="kejadian_deskripsi" placeholder="Kejadian Deskripsi" value="<?php echo isset($kejadian_deskripsi) ? $kejadian_deskripsi : ""; ?>">
+                    <textarea class="form-control texteditor" id="kejadian_deskripsi" name="kejadian_deskripsi" placeholder="Kejadian Deskripsi"><?php echo isset($kejadian_deskripsi) ? $kejadian_deskripsi : ""; ?></textarea>
                 </div>
             </div>
                                                                                                                                                                                     
             <div class="form-group">
                 <label for="prioritas" class="col-lg-2 control-label">Prioritas</label>
                 <div class="col-lg-10">
-                    <input type="text" id="prioritas" class="form-control" name="prioritas" placeholder="Prioritas" value="<?php echo isset($prioritas) ? $prioritas : ""; ?>">
+                    <select name="prioritas" id="prioritas" class="form-control">
+                        <option value="">PILIH PRIORITAS</option>
+                        <option value="rendah" <?php echo isset($prioritas) && $prioritas == "rendah" ? " selected" : ""; ?>>Rendah</option>
+                        <option value="sedang" <?php echo isset($prioritas) && $prioritas == "sedang" ? " selected" : ""; ?>>Sedang</option>
+                        <option value="tinggi" <?php echo isset($prioritas) && $prioritas == "tinggi" ? " selected" : ""; ?>>Tinggi</option>
+                    </select>
                 </div>
             </div>
             
@@ -158,7 +174,7 @@
             <div class="form-group">
                 <label for="penyelesaian_keterangan" class="col-lg-2 control-label">Penyelesaian Keterangan</label>
                 <div class="col-lg-10">
-                    <input type="text" id="penyelesaian_keterangan" class="form-control" name="penyelesaian_keterangan" placeholder="Penyelesaian Keterangan" value="<?php echo isset($penyelesaian_keterangan) ? $penyelesaian_keterangan : ""; ?>">
+                    <textarea class="form-control texteditor" id="penyelesaian_keterangan" name="penyelesaian_keterangan" placeholder="Penyelesaian Keterangan"><?php echo isset($penyelesaian_keterangan) ? $penyelesaian_keterangan : ""; ?></textarea>
                 </div>
             </div>
                                                                                                                                                                                     

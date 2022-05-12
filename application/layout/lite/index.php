@@ -420,8 +420,8 @@ function get_url($param){
         <script src="js/jquery-ui.min.js"></script>
         <script src="js/time.js"></script>
         <!-- jQuery UI Clockpicker 1.11.4 -->
-        <script src="js/jquery-clockpicker.min.js"></script><!-- 
-        <script type="text/javascript" src="js/tinymce/js/tinymce/tinymce.min.js"></script> -->
+        <script src="js/jquery-clockpicker.min.js"></script>
+        <script type="text/javascript" src="js/tinymce/js/tinymce/tinymce.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
             $.widget.bridge('uibutton', $.ui.button);
@@ -464,7 +464,8 @@ function get_url($param){
         <script type="text/javascript" src="js/webcam.js"></script>
         <script type="text/javascript" src="js/langcheck.js"></script>
         <script type="text/javascript" src="js/jsonview.js"></script>
-        <script src="https://cdn.tiny.cloud/1/wmvp5vagut9oqlarxd3c5adghob7vcjhi2zkm0h3fsmsvpyy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <!-- 
+        <script src="https://cdn.tiny.cloud/1/wmvp5vagut9oqlarxd3c5adghob7vcjhi2zkm0h3fsmsvpyy/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
         <script src="js/custom.js" referrerpolicy="origin"></script>
         <script type="text/javascript">
             /* $('#modal-success').modal('show'); */
