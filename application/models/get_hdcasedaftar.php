@@ -34,7 +34,8 @@ class get_hdcasedaftar extends CI_Model {
         
         if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']])){
             $sql = "
-                select 
+                select
+                    notiket as id,
                     notiket,
                     pelaporan_tgl, 
                     pelaporan_jam, 
@@ -55,6 +56,7 @@ class get_hdcasedaftar extends CI_Model {
         if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']])){
             $sql = "
                 select 
+                    notiket as id,
                     notiket,
                     pelaporan_tgl, 
                     pelaporan_jam, 
@@ -74,6 +76,7 @@ class get_hdcasedaftar extends CI_Model {
         if(((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){
             $sql = "
                 select 
+                    notiket as id,
                     notiket, 
                     pelaporan_tgl, 
                     pelaporan_jam, 

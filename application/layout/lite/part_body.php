@@ -1,4 +1,7 @@
 <section class="content">
+    <?php if($this->contain_custom_config){ ?>
+        {replace_body}
+    <?php } else { ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-info" style="border-top:  #adadad 2px solid; border-right: #adadad 2px solid;border-left: #adadad 2px solid;border-bottom: #adadad 2px solid;">
@@ -11,4 +14,5 @@
             </div> 
         </div>
     </div>
+    <?php } ?>
 </section>

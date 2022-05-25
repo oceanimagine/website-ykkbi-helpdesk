@@ -13,6 +13,7 @@ class layout {
     private $result_call = "";
     private $combinecall = [];
     private $variable_return = [];
+    private $tell_custom_config = false;
     
     public function __construct($layout = "lite", $config_sequence = "", $layout_stay = false) {    
         if(!defined("layout_folder")){
@@ -119,13 +120,27 @@ class layout {
             define("layout_use", $this->layout);
         }
         
-        $this->process_private_var_view($view_file, $setting_use);
-        $this->combinecall = new combine();
-        
-        if(is_array($view_file)){
-            $this->process_array_view($view_file, array_merge($variable, $this->variable_return));
+        if(is_array($view_file) && isset($view_file['set_custom_view'])){
+            $this->combinecall = new combine();
+            $class_name = strtolower(get_class($view_file['set_custom_view']));
+            $method_name = $this->CI->router->fetch_method();
+            $config_view = $this->CI->config->item('view_custom');
+            if(is_array($config_view) && isset($config_view[$class_name]) && is_array($config_view[$class_name]) && isset($config_view[$class_name][$method_name])){
+                $view_position = $config_view[$class_name][$method_name];
+                $this->tell_custom_config = true;
+                $this->process_regular_view($view_position, array_merge($variable, $this->variable_return));
+            } else {
+                $this->process_regular_view("home_404", array_merge($variable, $this->variable_return));
+            }
         } else {
-            $this->process_regular_view($view_file, array_merge($variable, $this->variable_return));
+            $this->process_private_var_view($view_file, $setting_use);
+            $this->combinecall = new combine();
+
+            if(is_array($view_file)){
+                $this->process_array_view($view_file, array_merge($variable, $this->variable_return));
+            } else {
+                $this->process_regular_view($view_file, array_merge($variable, $this->variable_return));
+            }
         }
     }
     
@@ -210,10 +225,21 @@ class layout {
     
     public function process_regular_view($view_file, $variable){
         if(!$this->layout_stay){
-            ob_start();
-            $this->CI->load->view($view_file, $variable);
-            $html = ob_get_clean();
-            $this->combinecall->layout($html, array(0));
+            if($this->tell_custom_config){
+                ob_start();
+                $this->CI->load->view($view_file, $variable);
+                $html = ob_get_clean();
+                $html_array = array(
+                    "html" => $html,
+                    "tell_custom_config" => $this->tell_custom_config
+                );
+                $this->combinecall->layout($html_array, array(0));
+            } else {
+                ob_start();
+                $this->CI->load->view($view_file, $variable);
+                $html = ob_get_clean();
+                $this->combinecall->layout($html, array(0));
+            }
         } else {
             $this->process_view_from_ajax($view_file, $variable);
         }

@@ -306,6 +306,7 @@ function get_url($param){
             ?>
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
+                
                 <?php 
                 /* 
                 do_include(4);

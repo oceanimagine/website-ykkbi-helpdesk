@@ -164,6 +164,7 @@
                     <script type="text/javascript">
                     get_nama({"value" : "<?php echo $_SESSION['nomor_karyawan']; ?>"});
                     </script>
+                    <input type="hidden" name="penyelesaian_nip" value="<?php echo $_SESSION['nomor_karyawan']; ?>" />
                     <?php } ?>
                 </div>
             </div>
@@ -177,6 +178,32 @@
             
             <!-- User TI Only -->
             <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']])){ ?>
+            <div class="form-group">
+                <label for="pelapor_nip" class="col-lg-2 control-label">Pelapor Nip</label>
+                <div class="col-lg-10">
+                    <select onchange="get_satker(this);" name="pelapor_nip" id="pelapor_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
+                        <option value="">PILIH NIP</option>
+                        <?php foreach($data_hduser as $data){ ?>
+                        <?php $selected = (isset($pelapor_nip) && $pelapor_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip) ? " selected='selected'" : ""; ?>
+                        <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
+                        <?php } ?>
+                    </select>
+                    <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
+                    <script type="text/javascript">
+                    get_satker({"value" : "<?php echo $_SESSION['nomor_karyawan']; ?>"});
+                    </script>
+                    <input type="hidden" name="pelapor_nip" value="<?php echo $_SESSION['nomor_karyawan']; ?>" />
+                    <?php } ?>
+                </div>
+            </div>
+                                                                                                                                                                                    
+            <div class="form-group">
+                <label for="pelapor_satker" class="col-lg-2 control-label">Pelapor Satker</label>
+                <div class="col-lg-10">
+                    <input disabled type="text" id="pelapor_satker_display" class="form-control" name="pelapor_satker_display" placeholder="Pelapor Satker">
+                    <input type="hidden" id="pelapor_satker" name="pelapor_satker" value="<?php echo isset($pelapor_satker) ? $pelapor_satker : ""; ?>">
+                </div>
+            </div>
             <div class="form-group">
                 <label for="kejadian_jenis" class="col-lg-2 control-label">Kejadian Jenis</label>
                 <div class="col-lg-10">

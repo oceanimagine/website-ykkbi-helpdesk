@@ -365,6 +365,12 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/* Config View */
+$config['view_custom'] = array(
+    "home" => array(
+        "index" => "dashboard/home"
+    )
+);
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

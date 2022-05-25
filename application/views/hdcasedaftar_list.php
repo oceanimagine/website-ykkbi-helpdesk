@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                                                                                
+                                <th>ID</th>                                                              
                                 <th>Notiket</th>                                                                                                
                                 
                                 <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>

@@ -44,7 +44,7 @@ class hdcasedaftar extends CI_Controller {
             $pelapor_nip = $this->input->post('pelapor_nip');
             $pelapor_satker = $this->input->post('pelapor_satker');
             $kejadian_jenis = $this->input->post('kejadian_jenis');
-            $kejadian_deskripsi = $this->input->post('kejadian_deskripsi');
+            $kejadian_deskripsi = $_POST['kejadian_deskripsi'];
             $prioritas = $this->input->post('prioritas');
             $kejadian_status = $this->input->post('kejadian_status');
             $penyelesaian_keterangan = $this->input->post('penyelesaian_keterangan');
@@ -53,29 +53,69 @@ class hdcasedaftar extends CI_Controller {
             $inputnama = $this->input->post('inputnama');
             $inputtgl = $this->input->post('inputtgl');
             $inputjam = $this->input->post('inputjam');
-            $this->get_hdcasedaftar->process(array(
-                'action' => 'update',
-                'table' => 'hdcasedaftar',
-                'column_value' => array(
-                    
-                    'notiket' => $notiket,
-                    'pelaporan_tgl' => $pelaporan_tgl,
-                    'pelaporan_jam' => $pelaporan_jam,
-                    'pelapor_nip' => $pelapor_nip,
-                    'pelapor_satker' => $pelapor_satker,
-                    'kejadian_jenis' => $kejadian_jenis,
-                    'kejadian_deskripsi' => $kejadian_deskripsi,
-                    'prioritas' => $prioritas,
-                    'kejadian_status' => $kejadian_status,
-                    'penyelesaian_keterangan' => $penyelesaian_keterangan,
-                    'penyelesaian_tgl' => $penyelesaian_tgl,
-                    'penyelesaian_nip' => $penyelesaian_nip,
-                    'inputnama' => $inputnama,
-                    'inputtgl' => $inputtgl,
-                    'inputjam' => $inputjam
-                ),
-                'where' => 'notiket = \''.$id.'\''
-            ));
+            if(((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){
+                $this->get_hdcasedaftar->process(array(
+                    'action' => 'update',
+                    'table' => 'hdcasedaftar',
+                    'column_value' => array(
+
+                        'notiket' => $notiket,
+                        'pelaporan_tgl' => $pelaporan_tgl,
+                        'pelaporan_jam' => $pelaporan_jam,
+                        'pelapor_nip' => $pelapor_nip,
+                        'pelapor_satker' => $pelapor_satker,
+                        'kejadian_jenis' => $kejadian_jenis,
+                        'kejadian_deskripsi' => $kejadian_deskripsi,
+                        'prioritas' => $prioritas,
+                        'kejadian_status' => $kejadian_status,
+                        'penyelesaian_keterangan' => $penyelesaian_keterangan,
+                        'penyelesaian_tgl' => $penyelesaian_tgl,
+                        'penyelesaian_nip' => $penyelesaian_nip,
+                        'inputnama' => $inputnama,
+                        'inputtgl' => $inputtgl,
+                        'inputjam' => $inputjam
+                    ),
+                    'where' => 'notiket = \''.$id.'\''
+                ));
+            }
+            if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']])){
+                $this->get_hdcasedaftar->process(array(
+                    'action' => 'update',
+                    'table' => 'hdcasedaftar',
+                    'column_value' => array(
+
+                        'notiket' => $notiket,
+                        'pelaporan_tgl' => $pelaporan_tgl,
+                        'pelaporan_jam' => $pelaporan_jam,
+                        'pelapor_nip' => $pelapor_nip,
+                        'pelapor_satker' => $pelapor_satker,
+                        'kejadian_jenis' => $kejadian_jenis,
+                        'kejadian_deskripsi' => $kejadian_deskripsi,
+                        'prioritas' => $prioritas,
+                        'inputtgl' => $inputtgl,
+                        'inputjam' => $inputjam
+                    ),
+                    'where' => 'notiket = \''.$id.'\''
+                ));
+            }
+            if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_ti'][$_SESSION['userlevel']]) && $GLOBALS['privilege_ti'][$_SESSION['userlevel']])){
+                $this->get_hdcasedaftar->process(array(
+                    'action' => 'update',
+                    'table' => 'hdcasedaftar',
+                    'column_value' => array(
+
+                        'notiket' => $notiket,
+                        'kejadian_status' => $kejadian_status,
+                        'penyelesaian_keterangan' => $penyelesaian_keterangan,
+                        'penyelesaian_tgl' => $penyelesaian_tgl,
+                        'penyelesaian_nip' => $penyelesaian_nip,
+                        'inputnama' => $inputnama,
+                        'inputtgl' => $inputtgl,
+                        'inputjam' => $inputjam
+                    ),
+                    'where' => 'notiket = \''.$id.'\''
+                ));
+            }
             redirect('hdcasedaftar/edit/'.$id.'');
         }
         

@@ -11,6 +11,7 @@ define("base_url_get_param", base_url() . APPPATH);
 
 class combine {
     private $menu;
+    public $contain_custom_config = false;
     function layout($html, $getjs = array(), $search = array(), $replace = array(), $array_view = array()) {
         $this->menu = new process_menu();
         $this->CI =& get_instance();
@@ -133,6 +134,10 @@ class combine {
         $replace = array(), 
         $array_view = array()
     ) {
+        if(is_array($html) && isset($html['html'])){
+            $this->contain_custom_config = $html['tell_custom_config'];
+            $html = $html['html'];
+        }
         $get_script = $this->get_all_script_tag($html);
         // $layout_content = file_get_contents(base_url . str_replace("{layout_active}", layout_use, layout_active) . "?base_url=" . base_url_get_param);
         

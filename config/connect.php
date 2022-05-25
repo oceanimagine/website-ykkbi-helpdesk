@@ -37,6 +37,18 @@ $GLOBALS['privilege_ti'] = array(
     "3" => true
 );
 
+$GLOBALS['prioritas_kejadian'] = array(
+    "tinggi" => "bg-red",
+    "sedang" => "bg-yellow",
+    "rendah" => "bg-green"
+);
+
+$GLOBALS['prioritas_status'] = array(
+    "open",
+    "close",
+    "pending"
+);
+
 /* Additional Function */
 function check_url_index_php(){
     $request_uri = is_array($_SERVER) && isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : "";
