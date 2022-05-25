@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Custom View</title>
+	<title>Dashboard Helpdesk</title>
         <style type="text/css">
             html, body {
                 font-family: consolas, monospace;
