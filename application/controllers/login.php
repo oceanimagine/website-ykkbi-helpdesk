@@ -41,7 +41,7 @@ class Login extends CI_Controller {
                 $user_active = $this->row;
                 if(is_object($user_active) && isset($user_active->nama_lengkap)){
                     $_SESSION['PRI'] = "ADMIN";
-                    $_SESSION['USR'] = $user_active->id;
+                    $_SESSION['USR'] = "9998";
                     $_SESSION['id'] = $user_active->id;
                     $_SESSION['nama_lengkap'] = $user_active->nama_lengkap;
                     $_SESSION['photo_admin'] = $user_active->photo_admin;
@@ -68,7 +68,7 @@ class Login extends CI_Controller {
                     if(is_object($hduser_active) && isset($hduser_active->user_nama)){
                         $_SESSION['PRI'] = "HDUSER";
                         $_SESSION['USR'] = "9999";
-                        $_SESSION['id'] = $hduser_active->user_id;
+                        $_SESSION['id'] = $hduser_active->user_nip;
                         $_SESSION['nama_lengkap'] = $hduser_active->user_nama;
                         $_SESSION['nomor_karyawan'] = $hduser_active->user_nip;
                         $_SESSION['username'] = $hduser_active->user_nama;

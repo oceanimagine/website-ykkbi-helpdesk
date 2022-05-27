@@ -7,7 +7,7 @@ $list_server = array(
         "user" => "root",
         "pass" => "YKKBI@2021",
         "data" => "project_helpdesk",
-        "base" => "/helpdesk/"
+        "base" => "/project-ykkbi-helpdesk/"
     ),
     "10.8.0.1" => array(
         "host" => "localhost",

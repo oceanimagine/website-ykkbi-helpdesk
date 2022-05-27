@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Hdcasedaftar List</title>
+	<title>Prioritas Tinggi List</title>
         <style type="text/css">
             html, body {
                 font-family: consolas, monospace;
@@ -51,9 +51,9 @@
                 <div class="panel panel-success" style="font-family: consolas, monospace !important; cursor: default; border-color: #adadad;">
                     <!-- Default panel contents -->
                     <div class="panel-heading" style="padding-bottom: 10px; color: black; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #ffffff)) !important;">
-                        List Hdcasedaftar  
+                        List Prioritas Tinggi  
                         <?php if((isset($_SESSION['userlevel']) && isset($GLOBALS['privilege_satker'][$_SESSION['userlevel']]) && $GLOBALS['privilege_satker'][$_SESSION['userlevel']]) || ((isset($_SESSION['PRI']) && $_SESSION['PRI'] == "SUPERADMIN") || (isset($_SESSION['PRI']) && $_SESSION['PRI'] == "ADMIN"))){ ?>
-                        <a id="addData" href="../../../index.php/hdcasedaftar/add" class="btn btn-primary btn-xs pull-right hidden-xs bg-green-gradient"><span class="glyphicon glyphicon-plus"></span>&nbsp;New Hdcasedaftar</a>
+                        <a id="addData" href="../../../index.php/prioritastinggi/add" class="btn btn-primary btn-xs pull-right hidden-xs bg-green-gradient"><span class="glyphicon glyphicon-plus"></span>&nbsp;New Prioritas Tinggi</a>
                         <?php } ?>
                     </div>
                     <table id="table-data" class="table table-bordered table-hover">

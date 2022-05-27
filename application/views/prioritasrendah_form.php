@@ -1,8 +1,14 @@
+<?php 
+
+$prioritas_redaksi = "Rendah";
+$prioritas = "rendah";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hdcasedaftar Form</title>
+    <title>Prioritas Rendah Form</title>
     <style type="text/css">
         html, body {
             font-family: consolas, monospace;
@@ -70,8 +76,10 @@
                     <select onchange="get_satker(this);" name="pelapor_nip" id="pelapor_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
                         <option value="">PILIH NIP</option>
                         <?php foreach($data_hduser as $data){ ?>
+                        <?php if($data->user_level == 2){ ?>
                         <?php $selected = (isset($pelapor_nip) && $pelapor_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip) ? " selected='selected'" : ""; ?>
                         <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
+                        <?php } ?>
                         <?php } ?>
                     </select>
                     <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
@@ -128,14 +136,10 @@
             </div>
             
             <div class="form-group">
-                <label for="prioritas" class="col-lg-2 control-label">Prioritas</label>
+                <label for="prioritas_display" class="col-lg-2 control-label">Prioritas</label>
                 <div class="col-lg-10">
-                    <select name="prioritas" id="prioritas" class="form-control">
-                        <option value="">PILIH PRIORITAS</option>
-                        <option value="rendah" <?php echo isset($prioritas) && $prioritas == "rendah" ? " selected" : ""; ?>>Rendah</option>
-                        <option value="sedang" <?php echo isset($prioritas) && $prioritas == "sedang" ? " selected" : ""; ?>>Sedang</option>
-                        <option value="tinggi" <?php echo isset($prioritas) && $prioritas == "tinggi" ? " selected" : ""; ?>>Tinggi</option>
-                    </select>
+                    <input disabled type="text" id="prioritas_display" class="form-control" name="prioritas_display" placeholder="Prioritas" value="<?php echo $prioritas_redaksi; ?>" />
+                    <input type="hidden" id="prioritas" class="form-control" name="prioritas" value="<?php echo $prioritas; ?>" />
                 </div>
             </div>    
                                                                                                                                                                                     
@@ -155,8 +159,10 @@
                     <select onchange="get_nama(this);" name="penyelesaian_nip" id="penyelesaian_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
                         <option value="">PILIH NIP</option>
                         <?php foreach($data_hduser as $data){ ?>
+                        <?php if($data->user_level == 3){ ?>
                         <?php $selected = ((isset($penyelesaian_nip) && $penyelesaian_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip)) ? " selected='selected'" : ""; ?>
                         <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
+                        <?php } ?>
                         <?php } ?>
                     </select>
                     <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
@@ -183,8 +189,10 @@
                     <select onchange="get_satker(this);" name="pelapor_nip" id="pelapor_nip" class="form-control" <?php echo isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != "" ? " disabled" : ""; ?>>
                         <option value="">PILIH NIP</option>
                         <?php foreach($data_hduser as $data){ ?>
+                        <?php if($data->user_level == 2){ ?>
                         <?php $selected = (isset($pelapor_nip) && $pelapor_nip == $data->user_nip) || (isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] == $data->user_nip) ? " selected='selected'" : ""; ?>
                         <option value="<?php echo $data->user_nip; ?>" <?php echo $selected; ?>><?php echo $data->inputnama . " :: " . $data->user_nip; ?></option>
+                        <?php } ?>
                         <?php } ?>
                     </select>
                     <?php if(isset($_SESSION['nomor_karyawan']) && $_SESSION['nomor_karyawan'] != ""){ ?>
@@ -216,14 +224,10 @@
             </div>
             
             <div class="form-group">
-                <label for="prioritas" class="col-lg-2 control-label">Prioritas</label>
+                <label for="prioritas_display" class="col-lg-2 control-label">Prioritas</label>
                 <div class="col-lg-10">
-                    <select disabled name="prioritas" id="prioritas" class="form-control">
-                        <option value="">PILIH PRIORITAS</option>
-                        <option value="rendah" <?php echo isset($prioritas) && $prioritas == "rendah" ? " selected" : ""; ?>>Rendah</option>
-                        <option value="sedang" <?php echo isset($prioritas) && $prioritas == "sedang" ? " selected" : ""; ?>>Sedang</option>
-                        <option value="tinggi" <?php echo isset($prioritas) && $prioritas == "tinggi" ? " selected" : ""; ?>>Tinggi</option>
-                    </select>
+                    <input disabled type="text" id="prioritas_display" class="form-control" name="prioritas_display" placeholder="Prioritas" value="<?php echo $prioritas_redaksi; ?>" />
+                    <input type="hidden" id="prioritas" class="form-control" name="prioritas" value="<?php echo $prioritas; ?>" />
                 </div>
             </div>   
             
@@ -291,7 +295,7 @@
                     <button style="width: 100%; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #ffffff)) !important; color: black; border-color: #adadad;" type="submit" class="btn btn-info pull-right bg-light-blue-gradient" name="input_hdcasedaftar" value="Input Hdcasedaftar">Input Hdcasedaftar</button>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <button style="width: 100%; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #ffffff)) !important;" type="button" class="btn btn-default bg-aqua-gradient" onclick="move_url('hdcasedaftar');">Lihat Data</button>
+                    <button style="width: 100%; background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f1f1f1), color-stop(1, #ffffff)) !important;" type="button" class="btn btn-default bg-aqua-gradient" onclick="move_url('prioritasrendah');">Lihat Data</button>
                 </div>
             </div>
         </div>

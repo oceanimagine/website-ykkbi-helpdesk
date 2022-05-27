@@ -1,6 +1,6 @@
 <?php 
 
-class get_hdcasedaftar extends CI_Model {
+class get_prioritastinggi extends CI_Model {
 
     function __construct(){
         $this->param = new process_param();
@@ -21,10 +21,10 @@ class get_hdcasedaftar extends CI_Model {
         $iDisplayStart = isset($_GET["iDisplayStart"]) ? intval($_GET["iDisplayStart"]) : 0;
         $sSearch = isset($_GET["sSearch"]) ? $_GET["sSearch"] : '';
 
-        $clouse = "";
+        $clouse = " where b.prioritas = 'tinggi'";
 
         if ($sSearch != '') {
-            $clouse = " where b.notiket like '%" . $sSearch . "%' ";
+            $clouse = " and b.notiket like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select b.notiket, b.pelaporan_tgl, b.pelaporan_jam, b.pelapor_nip, b.pelapor_satker, b.kejadian_jenis, b.kejadian_deskripsi, b.prioritas, b.kejadian_status, b.penyelesaian_keterangan, b.penyelesaian_tgl, b.penyelesaian_nip, b.inputnama, b.inputtgl, b.inputjam from hdcasedaftar b" . $clouse . "";
@@ -110,7 +110,7 @@ class get_hdcasedaftar extends CI_Model {
         ";
         $page = ($iDisplayStart / $iDisplayLength);
 
-        $resuld = $process_table->coba_db($sql, $page, $iDisplayLength, true, "../../../index.php/hdcasedaftar/edit", "../../../index.php/hdcasedaftar/hapus");
+        $resuld = $process_table->coba_db($sql, $page, $iDisplayLength, true, "../../../index.php/prioritastinggi/edit", "../../../index.php/prioritastinggi/hapus");
 
         $output = array(
             'sEcho' => $sEcho,
