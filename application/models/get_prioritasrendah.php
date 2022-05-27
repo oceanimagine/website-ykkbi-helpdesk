@@ -22,9 +22,13 @@ class get_prioritasrendah extends CI_Model {
         $sSearch = isset($_GET["sSearch"]) ? $_GET["sSearch"] : '';
 
         $clouse = " where b.prioritas = 'rendah'";
-
+        
+        if(isset($_SESSION['id']) && $_SESSION['id'] != "" && isset($_SESSION['PRI']) && $_SESSION['PRI'] == "HDUSER"){
+            $clouse = $clouse . " and b.pelapor_nip = '" . $_SESSION['id'] . "'";
+        }
+        
         if ($sSearch != '') {
-            $clouse = " and b.notiket like '%" . $sSearch . "%' ";
+            $clouse = $clouse . " and b.notiket like '%" . $sSearch . "%' ";
         }
 
         $sql_total = "select b.notiket, b.pelaporan_tgl, b.pelaporan_jam, b.pelapor_nip, b.pelapor_satker, b.kejadian_jenis, b.kejadian_deskripsi, b.prioritas, b.kejadian_status, b.penyelesaian_keterangan, b.penyelesaian_tgl, b.penyelesaian_nip, b.inputnama, b.inputtgl, b.inputjam from hdcasedaftar b" . $clouse . "";

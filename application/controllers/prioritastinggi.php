@@ -46,7 +46,7 @@ class prioritastinggi extends CI_Controller {
             $kejadian_jenis = $this->input->post('kejadian_jenis');
             $kejadian_deskripsi = $_POST['kejadian_deskripsi'];
             $prioritas = $this->input->post('prioritas');
-            $kejadian_status = $this->input->post('kejadian_status');
+            $kejadian_status = $this->input->post('kejadian_status') == "" ? "open" : $this->input->post('kejadian_status');
             $penyelesaian_keterangan = $this->input->post('penyelesaian_keterangan');
             $penyelesaian_tgl = $this->input->post('penyelesaian_tgl');
             $penyelesaian_nip = $this->input->post('penyelesaian_nip');
@@ -196,7 +196,7 @@ class prioritastinggi extends CI_Controller {
             $kejadian_jenis = $this->input->post('kejadian_jenis');
             $kejadian_deskripsi = $this->input->post('kejadian_deskripsi');
             $prioritas = $this->input->post('prioritas');
-            $kejadian_status = $this->input->post('kejadian_status');
+            $kejadian_status = $this->input->post('kejadian_status') == "" ? "open" : $this->input->post('kejadian_status');
             $penyelesaian_keterangan = $this->input->post('penyelesaian_keterangan');
             $penyelesaian_tgl = $this->input->post('penyelesaian_tgl');
             $penyelesaian_nip = $this->input->post('penyelesaian_nip');

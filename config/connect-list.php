@@ -22,5 +22,12 @@ $list_server = array(
         "pass" => "Ykkbi@2021",
         "data" => "project_helpdesk",
         "base" => "/ykkbidesk/"
+    ),
+    "ykkbidesk.appazzura.net" => array(
+        "host" => "localhost",
+        "user" => "u906809572_helpdesk",
+        "pass" => "Helpdesk@12345",
+        "data" => "u906809572_helpdesk",
+        "base" => "/"
     )
 );
